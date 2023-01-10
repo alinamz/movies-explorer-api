@@ -1,3 +1,4 @@
 {
-  "SALT": "secret-cod"
+  "SALT": "secret-cod",
+  "CONNECTION_STRING": "mongodb://127.0.0.1:27017/bitfilmsdb"
 }

@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
+const ErrorsMessages = require('../utils/ErrorsMessages');
+
 const LoginFailed = require('../errors/LoginFailed');
 
 module.exports = (req, res, next) => {
@@ -9,7 +11,7 @@ module.exports = (req, res, next) => {
     const auth = req.headers.authorization;
     token = auth == null ? null : auth.replace(/^Bearer*\s*/i, '');
     if (!token) {
-      next(new LoginFailed('Ошибка входа'));
+      next(new LoginFailed(ErrorsMessages.loginFailed));
       return;
     }
   }
@@ -22,6 +24,6 @@ module.exports = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (err) {
-    next(new LoginFailed('Ошибка входа'));
+    next(new LoginFailed(ErrorsMessages.loginFailed));
   }
 };

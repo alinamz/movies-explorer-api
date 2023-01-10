@@ -64,7 +64,6 @@ const login = ((req, res, next) => {
         .send({ token });
     })
     .catch((err) => {
-      console.log(err);
       if (err.statusCode === 401) {
         next(new LoginFailed(ErrorsMessages.loginFailed));
       } else {

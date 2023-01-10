@@ -31,7 +31,7 @@ const deleteMovies = ((req, res, next) => {
       if (!movie) {
         next(new NotFoundError(ErrorsMessages.movieNotFound));
       } else if (movie.owner.toString() !== req.user._id) {
-        next(new OwnershipError(ErrorsMessages.serverError));
+        next(new OwnershipError(ErrorsMessages.noAccessDelete));
       } else {
         movie.remove()
           .then(() => res.send(movie))
